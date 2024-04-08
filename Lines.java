@@ -38,7 +38,7 @@ public class Lines {
 		double b= ((y0 -((m*x0))));
 		for (int x=x0;x<=x1; x++ ) {
 			int y= (int)(m*x+b);
-			setPixel(x,y);
+			setPixel(x,Math.round(y));
 		}
 	}
 
@@ -56,13 +56,12 @@ public class Lines {
 	 */
 	void drawDda(int x0, int y0, int x1, int y1) {
 		// TODO Hier Code einfuegen ...
-		int mStrich= ((y1-y0)*(int)Math.pow(2, SHIFT))/(x1-x0);
-		int y=y0* (int) Math.pow(2, SHIFT	)+ GAMMA;
-		for (int x= x0; x<=x1; x++) {
-			
-			setPixel(x,((int)Math.pow(2, -(SHIFT)))* y);
-			y= y+mStrich;
-		}
+	int mStrich = ((y1-y0) << SHIFT)/(x1-x0);
+	int y = (y0 << SHIFT) + GAMMA;
+	for (int x=x0;x<=x1;x++) {
+		setPixel(x, (y >> SHIFT));
+		y=y+mStrich;
+	}
 	}
 
 	/**
