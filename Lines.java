@@ -34,7 +34,6 @@ public class Lines {
 	 * @param y1 y-Koordinate Endpunkt
 	 */
 	void drawLineEquation(int x0, int y0, int x1, int y1) {
-		// TODO Hier Code einfuegen ...
 		double m= ((double)(y1-y0)/(double)(x1-x0));
 		double b= ((y0 -((m*x0))));
 		for (int x=x0;x<=x1; x++ ) {
@@ -58,10 +57,11 @@ public class Lines {
 	void drawDda(int x0, int y0, int x1, int y1) {
 		// TODO Hier Code einfuegen ...
 		int mStrich= ((y1-y0)*(int)Math.pow(2, SHIFT))/(x1-x0);
-		int y=y0*(int)Math.pow(2, SHIFT	)+ GAMMA;
-		for (int x=x0; x<=x1; x++) {
-			setPixel(x, (int)Math.pow(2, -(SHIFT))*y);
-			y=y+mStrich;
+		int y=y0* (int) Math.pow(2, SHIFT	)+ GAMMA;
+		for (int x= x0; x<=x1; x++) {
+			
+			setPixel(x,((int)Math.pow(2, -(SHIFT)))* y);
+			y= y+mStrich;
 		}
 	}
 
@@ -75,7 +75,24 @@ public class Lines {
 	 */
 	void drawBresenham(int x0, int y0, int x1, int y1) {
 		// TODO Hier Code einfuegen ...
-		
-		
+		int dx = x1-x0; 
+		int dy = y1-y0;
+		int D = 2*(dy-dx);
+		int drE = 2*dy;
+		int drNE = 2*(dy-dx);
+		int x= x0;
+		int y= y0;
+		setPixel(x0, y0);
+		while(x<x1) {
+			if(D<0) {
+				D = D + drE;
+				x = x+1;
+			} else {
+				D = D+drNE;
+				x = x+1;
+				y = y+1;
+			}
+			setPixel(x,y);
+		}
 	}
 }
