@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="CGP_2"/>
+	<classpathentry excluding="Aufgabe 1/|Aufgabe 1/" kind="src" path="CGP_1"/>
+	<classpathentry kind="src" path="CGP_4"/>
+	<classpathentry kind="src" path="CGP_3"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
