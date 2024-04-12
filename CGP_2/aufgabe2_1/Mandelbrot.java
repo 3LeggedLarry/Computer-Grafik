@@ -1,6 +1,20 @@
 package aufgabe2_1;
 import java.awt.Graphics;
 
+
+
+
+/**
+ * 
+ * 
+//Mit Pascal Schwab und Markus Grimmer zusammen erarbeitet!!!
+*
+*
+*/
+
+
+
+
 public class Mandelbrot {
 	/** Graphics-Objekt zum Zeichnen */
 	private Graphics graphics;
@@ -69,7 +83,7 @@ public class Mandelbrot {
 	 */
 	double transformPx(int px) {
 		// TODO: Hier Code einfuegen ...
-		double lx = (width/(xMax-xMin))*(px-xMin);
+		double lx = (px*((xMax-xMin)/width))+xMin;
 		return lx;
 	}
 
@@ -81,7 +95,7 @@ public class Mandelbrot {
 	 */
 	double transformPy(int py) {
 		// TODO: Hier Code einfuegen ...
-		double ly = (height/(yMin-yMax))*(py-yMax);
+		double ly = (py*((yMin-yMax)/height))+yMax;
 		return ly;
 	}
 
@@ -94,13 +108,26 @@ public class Mandelbrot {
 			for (int py = 0; py < height; py++) {
 				// Zähler für die Anzahl der Iterationen
 				int iter = 0;
+							
 				// TODO 1: Hier aus px und py Real- und Imaginärteil einer komplexen Zahl c
 				// ausrechnen.
+				double real = transformPx(px);
+				double imaginary = transformPy(py);
 				
+				double zReal = 0;
+				double zImaginary = 0;
 				// Real- und Imaginärteil von z initialisieren (s. Angabe).
 				// TODO 2: Hier Schleife einfügen, die solange ausgeführt wird, wie |z|*|z| < 4 und
 				// Maximalzahl Iterationen noch nicht überschritten. Im Schleifenrumpf soll die
 				// komplexe Zahl z nach der Formel z = z*z + c aktualisiert werden.
+				
+				while(((zReal*zReal)+(zImaginary*zImaginary))<4 && iter<this.maxiter) {
+					double zReal_new = (zReal*zReal)-(zImaginary*zImaginary)+real;
+					double zImaginary_new = (zReal*zImaginary*2)+imaginary;
+					zReal = zReal_new;
+					zImaginary = zImaginary_new;
+					iter++;
+				}
 				graphics.setColor(colorScheme.colorForNumIterations(iter));
 				setPixel(graphics, px, py);
 			}
