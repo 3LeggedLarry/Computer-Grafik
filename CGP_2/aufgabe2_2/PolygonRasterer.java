@@ -26,6 +26,8 @@ public class PolygonRasterer {
 	/**
 	 * Umsetzung des Scan-Line-Verfahrens
 	 */
+
+
 	public void rasterize() {
 		// TODO: Ihr Code hier...
 		//Schleife die gesamte Höhe durchläuft
