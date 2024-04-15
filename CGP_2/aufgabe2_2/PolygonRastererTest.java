@@ -5,7 +5,7 @@ import java.awt.Color;
 
 import org.junit.Test;
 
-import aufgabe1_2.BufferedGraphics;
+import aufgabe2_2.BufferedGraphics;
 
 public class PolygonRastererTest {
 	private static String expected = 
