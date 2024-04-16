@@ -1,9 +1,6 @@
 package aufgabe2_1;
 import java.awt.Graphics;
 
-
-
-
 /**
  * 
  * 

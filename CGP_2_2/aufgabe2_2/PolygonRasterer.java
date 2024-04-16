@@ -2,7 +2,6 @@ package aufgabe2_2;
 import java.awt.Graphics;
 import java.util.Comparator;
 import java.util.LinkedList;
-
 /**
  * Rastert Polygone mit Scanline-Verfahren.
  * 
