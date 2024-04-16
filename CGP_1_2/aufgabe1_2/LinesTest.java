@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import aufgabe2_2.BufferedGraphics;
