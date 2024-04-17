@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.util.OptionalInt;
 
 /**
  * Clipping nach Cohen-Sutherland.
@@ -53,20 +54,35 @@ public class CohenSutherland {
 	 * @return Outputcode
 	 */
 	int outputCode(int x, int y) {
-		if(x>xmax){
-			return Area.GTXMAX;
-		}
-		if(x<xmin){
-			return Area.LTXMIN;
-		}
-		if(y<ymin){
-			return Area.LTYMIN;
-		}
-		if(y>ymax){
-			return Area.GTYMAX;
+		int bitErgebnis=0000;
+		if (x>xmax || y>ymax || x<xmin || y<ymin) {
+			if (x>xmax&&y<ymin){
+				bitErgebnis = 0110;
+			}
+			if (x<xmin&&y>ymax){
+				bitErgebnis = 1001;
+			}
+			if (x > xmax || y > ymax) {
+				if (x > xmax && y > ymax) {
+					bitErgebnis = 1010;
+				} else if (x > xmax) {
+					bitErgebnis = 0010;
+				} else if (y > ymax) {
+					bitErgebnis = 1000;
+				}
+			}
+			if (x < xmin || y < ymin) {
+				if (x < xmin && y < ymin) {
+					bitErgebnis = 0101;
+				} else if (x < xmin) {
+					bitErgebnis = 0001;
+				} else if (y < ymin) {
+					bitErgebnis = 0100;
+				}
+			}
 		}
 		// TODO: Ihr Code hier ...
-		return 0;
+		return bitErgebnis;
 	}
 
 	/**
