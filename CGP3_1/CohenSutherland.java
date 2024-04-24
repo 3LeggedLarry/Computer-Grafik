@@ -96,25 +96,25 @@ public class CohenSutherland {
 		} else {
 
 			if (aOC > 0) {
-				int newX=0;
-				int newY=0;
+				double newX = 0;
+				double newY = 0;
 
-				if (yA<ymin) {
-					newX = (xE - xA) / (yE - yA) * (ymin - yE) + xE;
+				if (yA < ymin) {
+					newX = ((double) (xE - xA) / (yE - yA)) * (ymin - yE) + xE;
 					newY = ymin;
-					clipLine(newX, newY, xE, yE);
-				} else if (yA>ymax) {
-					newX = (xE - xA) / (yE - yA) * (ymax - yE) + xE;
+					clipLine((int)newX, (int)newY, xE, yE);
+				} else if (yA > ymax) {
+					newX = ((double) (xE - xA) / (yE - yA)) * (ymax - yE) + xE;
 					newY = ymax;
-					clipLine(newX, newY, xE, yE);
-				} else if (xA<xmin){
+					clipLine((int) newX, (int) newY, xE, yE);
+				} else if (xA < xmin) {
 					newX = xmin;
-					newY = (yE-yA)/(xE-xA)*(xmin-xE)+yE;
-					clipLine(newX, newY, xE, yE);
-				} else if(xA>xmax){
+					newY =  ((double) (yE - yA) / (xE - xA)) * (xmin - xE) + yE;
+					clipLine((int) newX, (int) newY, xE, yE);
+				} else if (xA > xmax) {
 					newX = xmax;
-					newY = (yE-yA)/(xE-xA)*(xmax-xE)+yE;
-					clipLine(newX, newY, xE,yE);
+					newY = ((double) (yE - yA) / (xE - xA)) * (xmax - xE) + yE;
+					clipLine((int) newX, (int)newY, xE, yE);
 				}
 
 			} else {
