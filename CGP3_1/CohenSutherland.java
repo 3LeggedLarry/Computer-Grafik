@@ -57,6 +57,7 @@ public class CohenSutherland {
 		int bitErgebnis=0000;
 		if (x>xmax || y>ymax || x<xmin || y<ymin) {
 			if (x>xmax&&y<ymin){
+
 				bitErgebnis = 0110;
 			}
 			if (x<xmin&&y>ymax){
