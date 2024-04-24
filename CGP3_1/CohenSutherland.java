@@ -54,35 +54,20 @@ public class CohenSutherland {
 	 * @return Outputcode
 	 */
 	int outputCode(int x, int y) {
-		int bitErgebnis=0000;
-		if (x>xmax || y>ymax || x<xmin || y<ymin) {
-			if (x>xmax&&y<ymin){
-
-				bitErgebnis = 0110;
-			}
-			if (x<xmin&&y>ymax){
-				bitErgebnis = 1001;
-			}
-			if (x > xmax || y > ymax) {
-				if (x > xmax && y > ymax) {
-					bitErgebnis = 1010;
-				} else if (x > xmax) {
-					bitErgebnis = 0010;
-				} else if (y > ymax) {
-					bitErgebnis = 1000;
-				}
-			}
-			if (x < xmin || y < ymin) {
-				if (x < xmin && y < ymin) {
-					bitErgebnis = 0101;
-				} else if (x < xmin) {
-					bitErgebnis = 0001;
-				} else if (y < ymin) {
-					bitErgebnis = 0100;
-				}
-			}
-		}
+		int bitErgebnis=0;
 		// TODO: Ihr Code hier ...
+		if(y>ymax){
+			bitErgebnis = bitErgebnis | Area.GTYMAX; //4bit
+		}
+		if(y<ymin){
+			bitErgebnis = bitErgebnis | Area.LTYMIN; //3bit
+		}
+		if(x<xmin){
+			bitErgebnis = bitErgebnis | Area.LTXMIN; //1bit
+		}
+		if(x>xmax){
+			bitErgebnis = bitErgebnis | Area.GTXMAX; //2bit
+		}
 		return bitErgebnis;
 	}
 
@@ -97,8 +82,43 @@ public class CohenSutherland {
 	 * @param yE y-Koordinate Endpunkt Linie
 	 */
 	void clipLine(int xA, int yA, int xE, int yE) {
-
 		// TODO: Ihr Code hier ...
+		int andAbfrage=0;
+		int orAbfrage=0;
+		int aOC = outputCode(xA,yA);
+		int eOC = outputCode(xE,yE);
+		andAbfrage= aOC & eOC;
+		orAbfrage= aOC | eOC;
+		if(andAbfrage!=0){
 
+		} else if (orAbfrage==0) {
+			graphics.drawLine(xA,yA,xE,yE);
+		}else {
+			int newX=0;
+			int newY=0;
+
+			if (aOC > 0) {
+				if (yA<ymin) {
+					newX = (xE - xA) / (yE - yA) * (ymin - yE) + xE;
+					newY = ymin;
+					clipLine(newX, newY, xE, yE);
+				} else if (yA>ymax) {
+					newX = (xE - xA) / (yE - yA) * (ymax - yE) + xE;
+					newY = ymax;
+					clipLine(newX, newY, xE, yE);
+				} else if (xA<xmin){
+					newX = xmin;
+					newY = (yE-yA)/(xE-xA)*(xmin-xE)+yE;
+					clipLine(newX, newY, xE, yE);
+				} else if(xA>xmax){
+					newX = xmax;
+					newY = (yE-yA)/(xE-xA)*(xmax-xE)+yE;
+					clipLine(newX, newY, xE,yE);
+				}
+			} else {
+				clipLine(xE,yE,xA,yA);
+			}
+
+		}
 	}
 }
