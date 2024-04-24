@@ -93,11 +93,12 @@ public class CohenSutherland {
 
 		} else if (orAbfrage==0) {
 			graphics.drawLine(xA,yA,xE,yE);
-		}else {
-			int newX=0;
-			int newY=0;
+		} else {
 
 			if (aOC > 0) {
+				int newX=0;
+				int newY=0;
+
 				if (yA<ymin) {
 					newX = (xE - xA) / (yE - yA) * (ymin - yE) + xE;
 					newY = ymin;
@@ -115,6 +116,7 @@ public class CohenSutherland {
 					newY = (yE-yA)/(xE-xA)*(xmax-xE)+yE;
 					clipLine(newX, newY, xE,yE);
 				}
+
 			} else {
 				clipLine(xE,yE,xA,yA);
 			}
