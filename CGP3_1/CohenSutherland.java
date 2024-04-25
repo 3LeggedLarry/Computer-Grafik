@@ -96,24 +96,24 @@ public class CohenSutherland {
 		} else {
 
 			if (aOC > 0) {
-				double newX = 0;
-				double newY = 0;
+				int newX = 0;
+				int newY = 0;
 
 				if (yA < ymin) {
-					newX = ((double) (xE - xA) / (yE - yA)) * (ymin - yE) + xE;
+					newX = (int) (((double)(xE - xA) / (yE - yA)) * (ymin - yE) + xE);
 					newY = ymin;
 					clipLine((int)newX, (int)newY, xE, yE);
 				} else if (yA > ymax) {
-					newX = ((double) (xE - xA) / (yE - yA)) * (ymax - yE) + xE;
+					newX = (int) (((double)(xE - xA) / (yE - yA)) * (ymax - yE) + xE);
 					newY = ymax;
 					clipLine((int) newX, (int) newY, xE, yE);
 				} else if (xA < xmin) {
 					newX = xmin;
-					newY =  ((double) (yE - yA) / (xE - xA)) * (xmin - xE) + yE;
+					newY = (int) (((double)(yE - yA) / (xE - xA)) * (xmin - xE) + yE);
 					clipLine((int) newX, (int) newY, xE, yE);
 				} else if (xA > xmax) {
 					newX = xmax;
-					newY = ((double) (yE - yA) / (xE - xA)) * (xmax - xE) + yE;
+					newY = (int) (((double)(yE - yA) / (xE - xA)) * (xmax - xE) + yE);
 					clipLine((int) newX, (int)newY, xE, yE);
 				}
 

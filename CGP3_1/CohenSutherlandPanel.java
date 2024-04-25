@@ -56,17 +56,17 @@ public class CohenSutherlandPanel extends JPanel {
 		
 		// Wenn alles geht, können Sie auch das probieren.
 		// Generiere 100 Linien über zufällige Anfangs- und Endpunkte.
-		int nrLines = 1;
-		// Random r = new Random(0xBAADF00D);
+		int nrLines = 100;
+		 Random r = new Random(0xBAADF00D);
 		for (int i = 0; i < nrLines; i++) {
-			// int xA = (int) (r.nextInt(width));
-			int xA = 250;
-			//int yA = (int) (r.nextInt(height));
-			int yA = 250;
-			//int xE = (int) (r.nextInt(width));
-			int xE = 300;
-			// int yE = (int) (r.nextInt(height));
-			int yE = 250;
+			 int xA = (int) (r.nextInt(width));
+			//int xA = 0;
+			int yA = (int) (r.nextInt(height));
+			//int yA = 620;
+			int xE = (int) (r.nextInt(width));
+			//int xE = 620;
+			 int yE = (int) (r.nextInt(height));
+			//int yE = 0;
 			cohenSutherland.clipLine(xA, yA, xE, yE);
 		}
 	}
