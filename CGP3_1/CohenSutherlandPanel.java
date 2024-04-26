@@ -52,23 +52,23 @@ public class CohenSutherlandPanel extends JPanel {
 		CohenSutherland cohenSutherland = new CohenSutherland(graphics, xmin, ymin, xmax, ymax);
 		// Zeichne einzelne Linie (xA, yA) -- (xE, yE).
 		// Modifizieren Sie die Koordinaten um verschiedene Lagen von Linie zu Clip-Rechteck zu testen.
-		// cohenSutherland.clipLine(300, 300, 500, 500);
+		 cohenSutherland.clipLine(250, 250, 250, 600);
 		
 		// Wenn alles geht, können Sie auch das probieren.
 		// Generiere 100 Linien über zufällige Anfangs- und Endpunkte.
-		int nrLines = 100;
-		 Random r = new Random(0xBAADF00D);
-		for (int i = 0; i < nrLines; i++) {
-			 int xA = (int) (r.nextInt(width));
+		//int nrLines = 100;
+		// Random r = new Random(0xBAADF00D);
+		//for (int i = 0; i < nrLines; i++) {
+		//	 int xA = (int) (r.nextInt(width));
 			//int xA = 0;
-			int yA = (int) (r.nextInt(height));
+		//	int yA = (int) (r.nextInt(height));
 			//int yA = 620;
-			int xE = (int) (r.nextInt(width));
+		//	int xE = (int) (r.nextInt(width));
 			//int xE = 620;
-			 int yE = (int) (r.nextInt(height));
+		//	 int yE = (int) (r.nextInt(height));
 			//int yE = 0;
-			cohenSutherland.clipLine(xA, yA, xE, yE);
-		}
+		//	cohenSutherland.clipLine(xA, yA, xE, yE);
+	//	}
 	}
 
 	public static void main(String[] args) {

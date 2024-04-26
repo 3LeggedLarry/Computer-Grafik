@@ -83,16 +83,20 @@ public class CohenSutherland {
 	 */
 	void clipLine(int xA, int yA, int xE, int yE) {
 		// TODO: Ihr Code hier ...
-		int andAbfrage=0;
-		int orAbfrage=0;
 		int aOC = outputCode(xA,yA);
 		int eOC = outputCode(xE,yE);
-		andAbfrage= aOC & eOC;
-		orAbfrage= aOC | eOC;
+		int andAbfrage= aOC & eOC;
+		int orAbfrage= aOC | eOC;
 		if(andAbfrage!=0){
 
 		} else if (orAbfrage==0) {
-			graphics.drawLine(xA,yA,xE,yE);
+			if(xA>xE){
+				graphics.drawLine(xE,yE,xA,yA);
+			} else if (yA>yE){
+				graphics.drawLine(xE,yE,xA,yA);
+			} else {
+				graphics.drawLine(xA, yA, xE, yE);
+			}
 		} else {
 
 			if (aOC > 0) {
