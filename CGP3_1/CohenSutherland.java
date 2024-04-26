@@ -90,9 +90,7 @@ public class CohenSutherland {
 		if(andAbfrage!=0){
 
 		} else if (orAbfrage==0) {
-			if(xA>xE){
-				graphics.drawLine(xE,yE,xA,yA);
-			} else if (yA>yE){
+			if(xA>xE || yA>yE){
 				graphics.drawLine(xE,yE,xA,yA);
 			} else {
 				graphics.drawLine(xA, yA, xE, yE);
