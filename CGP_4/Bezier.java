@@ -51,12 +51,13 @@ class Bezier {
 	void render(Graphics graphics) {
 		// TODO: Hier Ihr Code...
 
-		for(double i=0; i<1-this.schrittWeite;i+=this.schrittWeite){
+		for(double i=0; i<=1-this.schrittWeite;i+=this.schrittWeite){
 			int ersterPunktX = (int) casteljau(i).x;
 			int ersterPunktY = (int) casteljau(i).y;
 			int zweiterPunktX = (int) casteljau(i+schrittWeite).x;
 			int zweiterPunktY = (int) casteljau(i+schrittWeite).y;
 			graphics.drawLine(ersterPunktX,ersterPunktY,zweiterPunktX,zweiterPunktY);
 		}
+		graphics.drawLine((int)casteljau(1-this.schrittWeite).x,(int)casteljau(1-this.schrittWeite).y, (int)casteljau(1).x,(int)casteljau(1).y);
 	}
 }
