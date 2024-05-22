@@ -28,6 +28,9 @@ abstract class BSpline {
 	 */
 	BSpline(List<Point> points, int k, double h) {
 		// TODO: Hier Ihr Code...
+		this.points = points;
+		this.k = k;
+		this.h = h;
 	}
 
 	/**
@@ -37,6 +40,9 @@ abstract class BSpline {
 	 */
 	void render(Graphics graphics) {
 		// TODO: Ihr Code hier
+		for(){
+			graphics.drawLine();
+		}
 	}
 
 	/**
@@ -61,5 +67,15 @@ abstract class BSpline {
 	 */
 	double nik(int i, int k, double t) {
 		// TODO: Ihr Code hier
+		double[][] niko;
+		for(){
+
+		}
+		for(int l=1; l<k; l++ ){
+			for(int j=0; j<l;j++){
+				niko[l][j]=new Point(t-1,this.points.get(j),t,this.points.get(j+1));
+			}
+		}
+		return niko;
 	}
 }
