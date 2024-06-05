@@ -40,9 +40,9 @@ abstract class BSpline {
 	 */
 	void render(Graphics graphics) {
 		// TODO: Ihr Code hier
-		for(){
-			graphics.drawLine();
-		}
+		//for(){
+		//	graphics.drawLine();
+		//}
 	}
 
 	/**
@@ -67,15 +67,35 @@ abstract class BSpline {
 	 */
 	double nik(int i, int k, double t) {
 		// TODO: Ihr Code hier
-		double[][] niko;
-		for(){
-
-		}
-		for(int l=1; l<k; l++ ){
-			for(int j=0; j<l;j++){
-				niko[l][j]=new Point(t-1,this.points.get(j),t,this.points.get(j+1));
+		double[][] niko = new double[i*50][k+1];
+		for(int j=i; j<k+i;j++){
+			if(knotVector[j] <= t && t < knotVector[j+1]){
+				niko[j][1]=1;
+			} else {
+				niko[j][1]=0;
 			}
 		}
-		return niko;
+		for(int l=0; l<i; l++ ){
+			for(int j=1; j<k;j++){
+				if (x0rule(l, j)) {
+					if(knotVector[l+j-1]-knotVector[l]==0){
+						niko[l][j] = ((knotVector[l + j] - t / knotVector[l + j] - knotVector[l + 1])) * niko[l + 1][j - 1];
+					} else {
+						niko[l][j] = ((t - knotVector[l]) / (knotVector[l + j - 1] - knotVector[l])) * niko[l][j - 1];
+					}
+				} else {
+					niko[l][j] = ((t - knotVector[l]) / (knotVector[l + j - 1] - knotVector[l])) * niko[l][j - 1] + ((knotVector[l + j] - t / knotVector[l + j] - knotVector[l + 1])) * niko[l + 1][j - 1];
+				}
+
+			}
+		}
+		return niko[i][k];
+	}
+	boolean x0rule(int l, int j){
+		if(knotVector[l+j-1]-knotVector[l]==0 || knotVector[l+j]-knotVector[l+1] == 0){
+			return true;
+		} else{
+			return false;
+		}
 	}
 }
