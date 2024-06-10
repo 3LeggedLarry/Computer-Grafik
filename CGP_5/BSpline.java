@@ -69,7 +69,7 @@ abstract class BSpline {
 		// TODO: Ihr Code hier
 		double[][] niko = new double[i*50][k+1];
 		for(int j=i; j<k+i;j++){
-			if(knotVector[j] <= t && t < knotVector[j+1]){
+			if(knotVector[j] <= t && t < knotVector[j+1] && niko[j-1][1]!=1){
 				niko[j][1]=1;
 			} else {
 				niko[j][1]=0;
