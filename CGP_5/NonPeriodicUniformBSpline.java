@@ -11,4 +11,5 @@ public class NonPeriodicUniformBSpline extends BSpline{
     NonPeriodicUniformBSpline(List<Point> points, int k, double h) {
         super(points, k, h);
     }
+
 }

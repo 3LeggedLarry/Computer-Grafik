@@ -54,6 +54,7 @@ abstract class BSpline {
 	 */
 	Point bSpline(double t) {
 		// TODO: Ihr Code hier
+
 			return null;
 	}
 
@@ -67,35 +68,27 @@ abstract class BSpline {
 	 */
 	double nik(int i, int k, double t) {
 		// TODO: Ihr Code hier
-		double[][] niko = new double[i*50][k+1];
+		double[][] niko = new double[i+k][k+1];
 		for(int j=i; j<k+i;j++){
-			if(knotVector[j] <= t && t < knotVector[j+1] && niko[j-1][1]!=1){
+			if(knotVector[j] <= t && t < knotVector[j+1]){
 				niko[j][1]=1;
 			} else {
 				niko[j][1]=0;
 			}
 		}
-		for(int l=0; l<i; l++ ){
-			for(int j=1; j<k;j++){
-				if (x0rule(l, j)) {
-					if(knotVector[l+j-1]-knotVector[l]==0){
-						niko[l][j] = ((knotVector[l + j] - t / knotVector[l + j] - knotVector[l + 1])) * niko[l + 1][j - 1];
-					} else {
-						niko[l][j] = ((t - knotVector[l]) / (knotVector[l + j - 1] - knotVector[l])) * niko[l][j - 1];
-					}
-				} else {
-					niko[l][j] = ((t - knotVector[l]) / (knotVector[l + j - 1] - knotVector[l])) * niko[l][j - 1] + ((knotVector[l + j] - t / knotVector[l + j] - knotVector[l + 1])) * niko[l + 1][j - 1];
-				}
-
-			}
+		for (int l=2; l<=k; l++) {
+			for (int j = 0; j <= k - l; j++) {
+			 int myki = i + j;
+			 	double firstDiv = x0rule(t - knotVector[myki],knotVector[myki + l - 1] - knotVector[myki]);
+				double secondDiv = x0rule(knotVector[myki + l] - t,knotVector[myki + l] - knotVector[myki + 1]);
+				niko[myki][l] =  firstDiv * niko[myki][l - 1] + secondDiv * niko[myki + 1][l - 1];
 		}
+			}
+
 		return niko[i][k];
 	}
-	boolean x0rule(int l, int j){
-		if(knotVector[l+j-1]-knotVector[l]==0 || knotVector[l+j]-knotVector[l+1] == 0){
-			return true;
-		} else{
-			return false;
-		}
+	private double x0rule(double top, double bottom)
+	{
+		return bottom == 0 ? 0 : top/bottom;
 	}
 }
